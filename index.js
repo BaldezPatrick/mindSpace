@@ -3,10 +3,13 @@ const exphbs = require("express-handlebars");
 const session = require("express-session");
 const FileStore = require("session-file-store")(session);
 const flash = require("express-flash");
+const ideasRoutes = require("./routes/ideasRoute");
 
 const app = express();
-
+const Idea = require("./models/idea");
+const User = require("./models/user");
 const conn = require("./db/connection");
+const IdeasController = require("./controllers/ideasController");
 
 app.engine("handlebars", exphbs.engine());
 app.set("view engine", "handlebars");
@@ -42,6 +45,9 @@ app.use((req, res, next) => {
 
   next();
 });
+
+app.use("/ideas", ideasRoutes);
+app.get("/", IdeasController.showIdeas);
 
 conn
   .sync()
