@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Kablammo&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/*NAVBAR*/
+
+#navbar {
+    background-color: #007bff; /* azul */
+    padding: 10px;
+}
+  
+#logo {
+    color: #ffffff; /* branco */
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: none;
+}
+  
+#logo:hover {
+    text-decoration: underline;
+}
+  
+#navbar ul {
+    align-items: center;
+    display: flex;
+    justify-content: flex-end;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+  
+#navbar ul li {
+    margin-left: 20px;
+}
+  
+a {
+    color: #ffffff; /* branco */
+    text-decoration: none;
+}
+  
+a:hover {
+    text-decoration: underline;
+}
+
+/*CONTAINER*/
+
+.container {
+    min-height: 75vh;
+    padding: 1.2rem;
+}
+
+/*FOOTER*/
+
+footer {
+    background-color: #f5f5f5; /* cor de fundo */
+    bottom: 0;
+    padding: 20px;
+    position: fixed;
+    text-align: center;
+    width: 100%;
+}
+  
+footer p {
+    margin: 0;
+}
+  
+footer span {
+    color: #007bff; /* cor do texto */
+    font-weight: bold;
+}
+  
