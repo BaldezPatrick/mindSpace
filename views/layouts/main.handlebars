@@ -17,7 +17,12 @@
         </ul>
     </nav>
     <section class="container">
-    {{{ body }}}
+        {{#if messages.message}}
+            <div class="flash-message">
+                {{messages.message}}
+            </div>
+        {{/if}}
+        {{{ body }}}
     </section>
     <footer>
         <p><span>MindSpace</span> &copy; 2023</p>
