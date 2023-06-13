@@ -34,6 +34,8 @@ app.use(
   })
 );
 
+app.use(express.urlencoded({ extended: true }));
+
 app.use(flash());
 
 app.use(express.static("public"));
