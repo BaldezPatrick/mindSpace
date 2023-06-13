@@ -48,7 +48,9 @@ a:hover {
 /*CONTAINER*/
 
 .container {
+    align-items: center;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     margin-bottom: 40px;
     min-height: 60vh;
@@ -128,4 +130,30 @@ footer span {
 .auth-container p a:hover {
     text-decoration: underline;
 }
-  
+
+
+/*FLASH-MESSAGE*/
+
+.flash-message {
+    padding: 1em;
+    color: white;
+    background-color: #007bff;
+    border-radius: 5px;
+    text-align: center;
+    margin: 0 auto 2em;
+    max-width: 60%;
+    animation-name: slideDown;
+    animation-duration: .5s;
+    animation-timing-function: ease;
+}
+
+@keyframes slideDown {
+    0%{
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
