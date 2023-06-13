@@ -48,7 +48,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use("/ideas", ideasRoutes);
+app.use("/", ideasRoutes);
 app.use("/", authRoutes);
 app.get("/", IdeasController.showIdeas);
 
