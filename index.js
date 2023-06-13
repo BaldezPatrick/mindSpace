@@ -4,7 +4,7 @@ const session = require("express-session");
 const FileStore = require("session-file-store")(session);
 const flash = require("express-flash");
 const ideasRoutes = require("./routes/ideasRoute");
-
+const authRoutes = require("./routes/authRoutes");
 const app = express();
 const Idea = require("./models/idea");
 const User = require("./models/user");
@@ -47,6 +47,7 @@ app.use((req, res, next) => {
 });
 
 app.use("/ideas", ideasRoutes);
+app.use("/", authRoutes);
 app.get("/", IdeasController.showIdeas);
 
 conn
