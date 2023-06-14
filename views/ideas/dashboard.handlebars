@@ -1,0 +1,23 @@
+<section class="dashboard-container">
+    <div class="dashboard-title-container">
+        <h2>Dashboard</h2>
+        <a class="dashboard-link" href="/createIdea">What's in your mind?</a>
+    </div>
+    <h3>Your Mind Space</h3>
+    <ul class="idea-list">
+        {{#each ideas}}
+            <li>
+                <span class="label">
+                    {{this.title}}
+                </span>
+                <span class="actions">
+                    <a href="/">Edit</a>
+                    <form action="/remove-idea" method="post">
+                        <input type="hidden" name="id" value="{{this.id}}">
+                        <input type="submit" value="Delete">
+                    </form>
+                </span>
+            </li>
+        {{/each}}
+    </ul>
+</section>
