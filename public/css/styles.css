@@ -55,7 +55,7 @@ a:hover {
     align-items: center;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: unset;
     margin-bottom: 40px;
     min-height: 60vh;
     padding: 1.2rem;
@@ -147,6 +147,8 @@ input[type="submit"] {
     margin: 0 auto 2em;
     max-width: 60%;
     animation: slideDown .5s ease, fadeOut 2s 3s forwards;
+    position: absolute;
+    z-index: 9999;
 }
 
 @keyframes slideDown {
