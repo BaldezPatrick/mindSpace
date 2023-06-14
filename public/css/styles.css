@@ -8,12 +8,12 @@
 /*NAVBAR*/
 
 #navbar {
-    background-color: #007bff; /* azul */
+    background-color: #007bff;
     padding: 10px;
 }
   
 #logo {
-    color: #ffffff; /* branco */
+    color: #ffffff;
     font-size: 24px;
     font-weight: bold;
     text-decoration: none;
@@ -35,9 +35,13 @@
 #navbar ul li {
     margin-left: 20px;
 }
+
+#navbar ul li a {
+    color: white;
+}
   
 a {
-    color: #ffffff; /* branco */
+    color: #007bff;
     text-decoration: none;
 }
   
@@ -98,16 +102,16 @@ footer span {
     font-weight: bold;
 }
   
-.form-control input[type="text"],
-.form-control input[type="email"],
-.form-control input[type="password"] {
+input[type="text"],
+input[type="email"],
+input[type="password"] {
     max-width: 80%;
     padding: 10px;
     border: 1px solid #cccccc;
     border-radius: 4px;
 }
   
-.auth-container input[type="submit"] {
+input[type="submit"] {
     background-color: #007bff;
     color: #ffffff;
     padding: 10px 20px;
@@ -142,9 +146,7 @@ footer span {
     text-align: center;
     margin: 0 auto 2em;
     max-width: 60%;
-    animation-name: slideDown;
-    animation-duration: .5s;
-    animation-timing-function: ease;
+    animation: slideDown .5s ease, fadeOut 2s 3s forwards;
 }
 
 @keyframes slideDown {
@@ -154,6 +156,78 @@ footer span {
     }
     100% {
         opacity: 1;
-        transform: translateX(0);
+        transform: translateY(0);
     }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-200px);
+    }
+}
+
+/*DASHBOARD*/
+
+.dashboard-container {
+    width: 100%;
+}
+
+.dashboard-title-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+    border-bottom: 1px solid black;
+    margin-bottom: 16px;
+}
+
+.dashboard-title-container h2 {
+    border-left: 4px solid #007bff;
+    padding-left: 4px;
+}
+
+.dashboard-title-container a {
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    text-decoration: none;
+}
+
+.idea-list {
+    margin-top: 1em;
+    list-style: none;
+}
+
+.idea-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.label {
+    font-size: 1.5em;
+    font-style: italic;
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.actions a {
+    background-color: rgb(230, 49, 49);
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 5px;
+    text-decoration: none;
 }
