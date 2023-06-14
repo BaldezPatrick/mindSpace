@@ -1,5 +1,5 @@
 
-# MindSpace: A Powerful MVC Web Application
+# MindSpace: A MVC Web Application
 
 MindSpace is a cutting-edge web application developed using the Node.js runtime environment, along with the robust Express framework. It follows the widely adopted MVC (Model-View-Controller) architectural pattern, providing a structured and efficient approach to building web applications.
 
