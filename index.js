@@ -39,6 +39,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(flash());
 
 app.use(express.static("public"));
+app.use(
+  "/edit/css",
+  express.static(__dirname + "/public/css", { type: "text/css" })
+);
 
 app.use((req, res, next) => {
   if (req.session.userId) {
