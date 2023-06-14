@@ -1,0 +1,42 @@
+<section class="home-header">
+    <h1>The Mind's Space</h1>
+    <form class="search-home" action="/" method="get">
+        <input type="text" name="search" placeholder="Type what you want to find">
+        <input type="submit" value="Search">
+    </form>
+    <section class="order-container">
+        <span>Order by:</span>
+        <form action="/" method="get">
+            <input type="hidden" name="search" value="{{this.search}}">
+            <input type="hidden" name="order" value="new">
+            <button type="submit">
+                &#x25B2;
+            </button>
+        </form>
+        <form action="/" method="get">
+            <input type="hidden" name="search" value="{{this.search}}">
+            <input type="hidden" name="order" value="old">
+            <button type="submit">
+                &#x25BC;
+            </button>
+        </form>
+        <a href="/">Clear</a>
+    </section>
+        {{#if search}}
+            {{#if ideasLength}}
+                <p>Found {{ideasLength}} for your search.</p>
+            {{else}}
+                <p>Not found: {{search}}</p>
+            {{/if}}
+        {{/if}}
+</section>
+<section class="home-container">
+    {{#each idea}}
+        <figure>
+            <blockquote>
+                "{{this.title}}"
+            </blockquote>
+            <figcaption>por <span>{{this.user.name}}</span></figcaption>
+        </figure>
+    {{/each}}
+</section>
