@@ -50,14 +50,17 @@ class IdeasController {
   }
 
   static async removeIdea(req, res) {
-    const id = req.body.id
-    const userId = req.session.userId
+    const id = req.body.id;
+    const userId = req.session.userId;
 
-    await Idea.destroy({where: {id: id, userId: userId}})
+    await Idea.destroy({ where: { id: id, userId: userId } });
     
-    req.flash('message', "The idea was deleted.")
+    req.flash("message", "The idea was deleted.");
 
     req.session.save(() => {
+      res.redirect("/dashboard-ideas");
+    });
+  }
 
   static async editIdea(req, res) {
     const id = req.params.id;
