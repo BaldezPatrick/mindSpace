@@ -9,8 +9,8 @@ class IdeasController {
   static async dashboard(req, res) {
     const userId = req.session.userId;
 
-    if(!userId) {
-      res.render("auth/login")
+    if (!userId) {
+      res.render("auth/login");
       return;
     }
 
