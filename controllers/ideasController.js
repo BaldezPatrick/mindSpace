@@ -58,9 +58,28 @@ class IdeasController {
     req.flash('message', "The idea was deleted.")
 
     req.session.save(() => {
-      res.redirect('/dashboard-ideas')
-    })
 
+  static async editIdea(req, res) {
+    const id = req.params.id;
+    const idea = await Idea.findOne({ where: { id: id }, raw: true });
+
+    res.render("ideas/edit", { idea });
+  }
+
+  static async editIdeaSave(req, res) {
+    const id = req.body.id;
+
+    const idea = {
+      title: req.body.title,
+    };
+
+    await Idea.update(idea, { where: { id: id } });
+
+    req.flash("message", "Idea was edited.");
+
+    req.session.save(() => {
+      res.redirect("/dashboard-ideas");
+    });
   }
 }
 
