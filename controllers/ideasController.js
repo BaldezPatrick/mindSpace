@@ -23,9 +23,9 @@ class IdeasController {
     });
 
     const ideas = user.ideas.map((item) => item.dataValues)
-    console.log(ideas);
+    var emptyIdeas = ideas.length === 0;
 
-    res.render("ideas/dashboard", { ideas });
+    res.render("ideas/dashboard", { ideas, emptyIdeas });
   }
 
   static addIdea(req, res) {
