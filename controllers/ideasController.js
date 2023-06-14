@@ -7,7 +7,60 @@ class IdeasController {
   }
 
   static async dashboard(req, res) {
-    res.render("ideas/dashboard");
+    const userId = req.session.userId;
+
+    if(!userId) {
+      res.render("auth/login")
+      return;
+    }
+
+    const user = await User.findOne({
+      where: {
+        id: userId,
+      },
+      include: {model: Idea},
+      plain: true,
+    });
+
+    const ideas = user.ideas.map((item) => item.dataValues)
+    console.log(ideas);
+
+    res.render("ideas/dashboard", { ideas });
+  }
+
+  static addIdea(req, res) {
+    res.render("ideas/createIdea");
+  }
+
+  static async addIdeaSave(req, res) {
+    const idea = {
+      title: req.body.title,
+      userId: req.session.userId,
+    };
+
+    try {
+      await Idea.create(idea);
+      req.flash("message", "Idea posted!");
+      req.session.save(() => {
+        res.redirect("/dashboard-ideas");
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  static async removeIdea(req, res) {
+    const id = req.body.id
+    const userId = req.session.userId
+
+    await Idea.destroy({where: {id: id, userId: userId}})
+    
+    req.flash('message', "The idea was deleted.")
+
+    req.session.save(() => {
+      res.redirect('/dashboard-ideas')
+    })
+
   }
 }
 
