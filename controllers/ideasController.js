@@ -1,9 +1,40 @@
 const Idea = require("../models/idea");
 const User = require("../models/user");
+const { Op } = require("sequelize");
 
 class IdeasController {
   static async showIdeas(req, res) {
-    res.render("ideas/home");
+    let search = "";
+
+    if (req.query.search) {
+      search = req.query.search;
+    }
+
+    let order = "DESC";
+
+    if (req.query.order === "old") {
+      order = "ASC";
+    } else {
+      order = "DESC";
+    }
+
+    const ideaData = await Idea.findAll({
+      include: User,
+      where: {
+        title: { [Op.like]: `%${search}%` },
+      },
+      order: [["createdAt", order]],
+    });
+
+    const idea = ideaData.map((idea) => idea.get({ plain: true }));
+
+    let ideasLength = idea.length;
+
+    if (ideasLength === 0) {
+      ideasLength = false;
+    }
+
+    res.render("ideas/home", { idea, search, ideasLength });
   }
 
   static async dashboard(req, res) {
@@ -18,11 +49,11 @@ class IdeasController {
       where: {
         id: userId,
       },
-      include: {model: Idea},
+      include: { model: Idea },
       plain: true,
     });
 
-    const ideas = user.ideas.map((item) => item.dataValues)
+    const ideas = user.ideas.map((item) => item.dataValues);
     var emptyIdeas = ideas.length === 0;
 
     res.render("ideas/dashboard", { ideas, emptyIdeas });
@@ -54,7 +85,7 @@ class IdeasController {
     const userId = req.session.userId;
 
     await Idea.destroy({ where: { id: id, userId: userId } });
-    
+
     req.flash("message", "The idea was deleted.");
 
     req.session.save(() => {
