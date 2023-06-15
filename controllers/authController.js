@@ -17,14 +17,38 @@ class AuthController {
       return;
     }
 
+    const loginAttemptsKey = `loginAttempts_${user.id}`;
+
+    const loginAttempts = req.session[loginAttemptsKey] || 0;
+
+    if (loginAttempts >= 2) {
+      const blockLogin = 1 * 60 * 1000;
+      const lastLoginAttemptTime = req.session.lastLoginAttemptTime || 0;
+      const currentTime = new Date().getTime();
+
+      if (currentTime - lastLoginAttemptTime < blockLogin) {
+        req.flash(
+          "message",
+          "Too many login attempts. Please try again later."
+        );
+        res.render("auth/login");
+
+        return;
+      }
+    }
+
     const checkPassword = bcrypt.compareSync(password, user.password);
 
     if (!checkPassword) {
       req.flash("message", "Invalid password");
+      req.session[loginAttemptsKey] = (req.session[loginAttemptsKey] || 0) + 1;
+      req.session.lastLoginAttemptTime = new Date().getTime();
       res.render("auth/login");
-
       return;
     }
+
+    req.session[loginAttemptsKey] = 0;
+    req.session.lastLoginAttemptTime = 0;
 
     req.session.userId = user.id;
     req.session.save(() => {
