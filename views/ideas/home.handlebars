@@ -32,11 +32,13 @@
 </section>
 <section class="home-container">
     {{#each idea}}
-        <figure>
-            <blockquote>
-                "{{this.title}}"
-            </blockquote>
-            <figcaption>por <span>{{this.user.name}}</span></figcaption>
-        </figure>
+            <figure>
+                <blockquote>
+                    "{{this.title}}"
+                </blockquote>
+        {{#with (split this.user.name " ")}}
+                <figcaption>por <span>{{this.[0]}}</span></figcaption>
+        {{/with}}
+            </figure>
     {{/each}}
 </section>
