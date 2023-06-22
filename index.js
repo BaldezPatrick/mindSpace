@@ -10,6 +10,7 @@ const Idea = require("./models/idea");
 const User = require("./models/user");
 const conn = require("./db/connection");
 const IdeasController = require("./controllers/ideasController");
+const Handlebars = require("./helpers/split");
 
 app.engine("handlebars", exphbs.engine());
 app.set("view engine", "handlebars");
